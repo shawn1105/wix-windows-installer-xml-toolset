@@ -1,4 +1,5 @@
-# wix-windows-installer-xml-toolset
+# Wix-windows-installer-xml-toolset ( .msi 安裝工具 )
+`此專案中的檔案僅為部分檔案內容，實際以新建Wix專案為主`
 
 ---
 ##  Wix 環境建置
