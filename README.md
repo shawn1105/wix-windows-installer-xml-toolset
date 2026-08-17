@@ -151,6 +151,12 @@
   </ItemGroup>
 </Project>
 ```
+Package.wxs 中的應用
+```
+<Package Name="$(var.ProductName)" Manufacturer="$(var.Manufacturer)" Version="$(var.Version)" UpgradeCode="..." ProductCode="*" >
+...
+</Package>
+```
 
 ### Debug 方法
 WiX (Windows Installer XML Toolset) 的設計是基於 XML 架構的，因此無支援逐行偵錯功能，僅能整體設計完後編譯建置.msi檔案執行檢查。
