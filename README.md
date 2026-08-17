@@ -130,6 +130,28 @@
 </Fragment>
 ```
 
+*專案變數設定*
+可在專案建置檔 ( .wixproj ) 中設定變數
+```
+<Project Sdk="WixToolset.Sdk/5.0.2">
+  <PropertyGroup>
+    <DefineConstants>
+			Dir=$(SolutionDir)\test;
+			ProductName=test;
+			Manufacturer=myself;
+			Version=1.0.0;
+		</DefineConstants>
+    <Cultures>zh-TW</Cultures>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="WixToolset.Firewall.wixext" Version="5.0.2" />
+    <PackageReference Include="WixToolset.Heat" Version="5.0.2" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="5.0.2" />
+    <PackageReference Include="WixToolset.Util.wixext" Version="5.0.2" />
+  </ItemGroup>
+</Project>
+```
+
 ### Debug 方法
 WiX (Windows Installer XML Toolset) 的設計是基於 XML 架構的，因此無支援逐行偵錯功能，僅能整體設計完後編譯建置.msi檔案執行檢查。
 
