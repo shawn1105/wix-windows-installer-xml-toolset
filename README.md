@@ -47,27 +47,35 @@
 
 於 InstallAgentUIDialog.wxs 設計 UI 內容
 1. Welcome Page
+
 ![](./.github/assets/P1.png)
 
 2. License Agreement Page
-![](./.github/assets/P2-2.png)	![](./.github/assets/P2-1.png)
+
+![](./.github/assets/P2-1.png)	![](./.github/assets/P2-2.png)
 
 3. Client Configuration Page
+
 ![](./.github/assets/P3-1.png)	![](./.github/assets/P3-2.png)
 
 4. Install Agent Page
+
 ![](./.github/assets/P4.png)
 
 5. Uninstall Agent Page
+
 ![](./.github/assets/P5.png)
 
 6. Uninstalling Agent Page
+
 ![](./.github/assets/P6.png)
 
 7. Operation Completed Page
+
 ![](./.github/assets/P8.png)
 
 8. Operation Interrupted Page
+
 ![](./.github/assets/P7.png)
 
 9. Operation Error Page
