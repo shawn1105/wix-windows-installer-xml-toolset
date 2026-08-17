@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization xmlns="http://wixtoolset.org/schemas/v4/wxl" Culture="zh-TW" Codepage="950">
+	<String Id="DowngradeError" Value="A newer version of [ProductName] is already installed." />
+
+	<!-- WiX 防火牆擴充套件繁體中文對應字串 -->
+	<String Id="msierrFirewallCannotConnect" Value="無法連接至 Windows 防火牆。" />
+	<String Id="WixSchedFirewallExceptionsInstall" Value="正在排定安裝防火牆例外規則..." />
+	<String Id="WixSchedFirewallExceptionsUninstall" Value="正在排定移除防火牆例外規則..." />
+	<String Id="WixRollbackFirewallExceptionsInstall" Value="正在復原防火牆例外規則的安裝..." />
+	<String Id="WixRollbackFirewallExceptionsUninstall" Value="正在復原防火牆例外規則的移除..." />
+	<String Id="WixExecFirewallExceptionsInstall" Value="正在寫入防火牆例外規則..." />
+	<String Id="WixExecFirewallExceptionsUninstall" Value="正在移除防火牆例外規則..." />
+
+	<!-- Welcome Page 文字內容 -->
+	<String Id="WelcomeSubtitle" Value="Welcome to the TestCase" />
+	<String Id="WelcomeDescription_1" Value="This TestCase will guide you through the process of installing or uninstalling the something on your computer." />
+	<String Id="WelcomeDescription_2" Value="Please select an operation to proceed" />
+
+	<!-- Uninstall something Page 文字內容 -->
+	<String Id="UninstallsomethingPageName" Value="Uninstall something" />
+	<String Id="UninstallsomethingDescription" Value="Please review the cleanup options carefully. Once the process begins, the something services will be stopped and removed." />
+	<String Id="Uninstallsomething_CB_Text" Value="Full Cleanup (Remove all Files and Logs.)" />
+
+	<!-- Uninstalling something Page 文字內容 -->
+	<String Id="UninstallingsomethingPageName" Value="Uninstalling something" />
+	<String Id="UninstallingsomethingDescription_1" Value="Please Wait..." />
+	<String Id="UninstallingsomethingDescription_2" Value="The system is removing the something and applying your cleanup preferences. This may take a few moments.&#10;Please do not close this window until the process is complete." />
+
+	<!-- License Agreement Page 文字內容 -->
+	<String Id="LicenseAgreementPageName" Value="License Agreement" />
+	<String Id="LicenseAgreementContent" Value="$(var.SolutionDir)Resources\LicenseAgreementContent.rtf" />
+	<String Id="LicenseAgreement_CB_Text" Value="我已閱讀並同意上述授權合約之條款" />
+
+	<!-- Client Configuration Page 文字內容 -->
+	<String Id="ClientConfigurationPageName" Value="Client Configuration" />
+	<String Id="ClientConfigurationSetting_FQDN" Value="FQDN/IP :" />
+	<String Id="ClientConfigurationSetting_Protocol" Value="Protocol :" />
+	<String Id="ClientConfigurationSetting_IISFolder" Value="IIS Folder :" />
+
+	<!-- Installing something Page 文字內容 -->
+	<String Id="InstallingsomethingPageName" Value="Installing something" />
+	<String Id="InstallingsomethingDescription_1" Value="Please Wait..." />
+	<String Id="InstallingsomethingDescription_2" Value="The system is deploying the something with your specified configurations. This may take a few moments.&#10;Please do not close this window until the process is complete." />
+
+	<!-- Operation Completed Page 文字內容 -->
+	<String Id="CompletedSubtitle" Value="Operation Completed" />
+	<String Id="CompletedDescription_1" Value="The operation was completed successfully. Your system has been updated according to the requested task. Click the Finish button to exit the something." />
+
+	<!-- Operation Interrupted Page 文字內容 -->
+	<String Id="InterruptedSubtitle" Value="Operation Interrupted" />
+	<String Id="InterruptedDescription_1" Value="The operation was Interrupted and did not complete. Your system might be in an incomplete state. To perform the task at a later time, please run the something again. Click the Finish button to exit." />
+
+	<String Id="Status" Value="Status...." />
+
+	<String Id="Install" Value="Install" />
+	<String Id="Uninstall" Value="Uninstall" />
+	<String Id="Next" Value="Next" />
+	<String Id="Back" Value="Back" />
+	<String Id="Cancel" Value="Cancel" />
+	<String Id="Finish" Value="Finish" />
+
+
+</WixLocalization>

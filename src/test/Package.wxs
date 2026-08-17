@@ -1,0 +1,29 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+	 xmlns:firewall="http://wixtoolset.org/schemas/v4/wxs/firewall">
+	
+	<Package Name="$(var.ProductName)" Manufacturer="$(var.Manufacturer)" Version="$(var.Version)" UpgradeCode="{...}" ProductCode="*" >
+		<MediaTemplate EmbedCab="yes" />
+
+		<MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
+
+		<UIRef Id="InstallsomethingUIDialog" />
+		<InstallUISequence>
+			<Show Dialog="something_Welcome_Dlg" Before="ExecuteAction" />
+			<Show Dialog="Install_something_Dlg" After="something_Welcome_Dlg" Condition="NOT Installed"/>
+			<Show Dialog="Uninstalling_something_Dlg" After="something_Welcome_Dlg" Condition="Installed"/>
+			<Show Dialog="Operation_Completed_Dlg" OnExit="success" />
+			<Show Dialog="Operation_Interrupted_Dlg" OnExit="cancel" />
+			<Show Dialog="Operation_Error_Dlg" OnExit="error" />
+		</InstallUISequence>
+		<AdminUISequence>
+			<Show Dialog="Operation_Completed_Dlg" OnExit="success" />
+			<Show Dialog="Operation_Interrupted_Dlg" OnExit="cancel" />
+			<Show Dialog="Operation_Error_Dlg" OnExit="error" />
+		</AdminUISequence>
+	</Package>
+	<Fragment>
+		<Property Id="PROTOCOL" Value="https"></Property>
+		<Property Id="IISFOLDERNAME" Value="TEST"></Property>
+		<Property Id="FIREWALLPORT" Value="80,443"></Property>
+	</Fragment>
+</Wix>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<Fragment>
+		<UI Id="InstallsomethingUIDialog">
+
+			<TextStyle Id="WixUI_Font_Normal" FaceName="Noto Sans TC" Size="8" />
+			<TextStyle Id="WixUI_Font_Bigger" FaceName="Noto Sans TC" Size="12" />
+			<TextStyle Id="WixUI_Font_Title" FaceName="Noto Sans TC" Size="9" Bold="yes" />
+
+			<TextStyle Id="Page_Name_Font" FaceName="Noto Sans TC" Size="12" Bold="no" Red="255" Green="255" Blue="255" />
+			<TextStyle Id="Welcome_Font" FaceName="Noto Sans TC" Size="12" Bold="yes" Red="255" Green="140" Blue="140" />
+			<TextStyle Id="Description_Font_1" FaceName="Noto Sans TC" Size="9" Bold="yes" Red="100" Green="100" Blue="100" />
+			<TextStyle Id="Description_Font_2" FaceName="Noto Sans TC" Size="8" Bold="no" Red="128" Green="128" Blue="128" />
+			<TextStyle Id="Description_Font_3" FaceName="Noto Sans TC" Size="7" Bold="no" Red="128" Green="128" Blue="128" />
+
+			<Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+
+			<DialogRef Id="ErrorDlg" />
+			<DialogRef Id="FilesInUse" />
+			
+			<!-- Welcome Page -->
+			<Dialog Id="something_Welcome_Dlg" Width="370" Height="270" Title="[ProductName]">
+				<!-- 頁面圖片 -->
+				<Control Id="Line_img" Type="Bitmap" X="0" Y="229" Width="370" Height="1" TabSkip="no" Text="Line_img" />
+				<Control Id="WelcomeLogo_img" Type="Bitmap" X="0" Y="0" Width="115" Height="229" TabSkip="no" Text="WelcomLogo_img" />
+				<!-- 頁面文字 -->
+				<Control Id="WelcomeSubtitle_txt" Type="Text" X="120" Y="20" Width="240" Height="40" Transparent="yes" NoPrefix="yes" Text="{\Welcome_Font}!(loc.WelcomeSubtitle)"/>
+				<Control Id="WelcomeDescription_1_txt" Type="Text" X="120" Y="60" Width="230" Height="40" Transparent="yes" NoPrefix="yes" Text="{\Description_Font_1}!(loc.WelcomeDescription_1)"/>
+				<Control Id="WelcomeDescription_2_txt" Type="Text" X="120" Y="100" Width="230" Height="40" Transparent="yes" NoPrefix="yes" Text="{\Description_Font_1}!(loc.WelcomeDescription_2)"/>
+				<!-- 解除安裝按鈕 -->
+				<Control Id="Uninstall_btn" Type="PushButton" X="174" Y="243" Width="56" Height="17" Text="!(loc.Uninstall)"  DisableCondition="NOT Installed" EnableCondition="Installed">
+					<Publish Event="NewDialog" Value="Uninstall_something_Dlg" />
+				</Control>
+				<!-- 安裝按鈕 -->				
+				<Control Id="Install_btn" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" ElevationShield="yes" Text="!(loc.Install)">
+					<Publish Event="NewDialog" Value="License_Agreement_Dlg" />
+				</Control>
+				<!-- 取消按鈕 -->
+				<Control Id="Cancel_btn" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.Cancel)">
+					<Publish Event="SpawnDialog" Value="CancelDlg" />
+				</Control>
+			</Dialog>
+
+			<!-- Uninstall something Page -->
+			<Dialog Id="Uninstall_something_Dlg" Width="370" Height="270" Title="[ProductName]">
+				<!-- 頁面圖片 -->
+				<Control Id="Line_img" Type="Bitmap" X="0" Y="229" Width="370" Height="1" TabSkip="no" Text="Line_img" />
+				<Control Id="Header_img" Type="Bitmap" X="0" Y="0" Width="370" Height="52" TabSkip="no" Text="Header_img" />
+				<!-- 頁面名稱 -->
+				<Control Id="PageName_txt" Type="Text" X="10" Y="18" Width="120" Height="20" Transparent="yes" NoPrefix="yes" Text="{\Page_Name_Font}!(loc.UninstallsomethingPageName)"/>
+				<!-- 頁面文字 -->
+				<Control Id="UninstallsomethingDescription_txt" Type="Text" X="10" Y="59" Width="320" Height="35" Text="{\Description_Font_1}!(loc.UninstallsomethingDescription)" />
+				<Control Id="FullCleanup_cb" Type="CheckBox" X="10" Y="95" Width="200" Height="15" Property="PRESERVEDATA" CheckBoxValue="0" Text="{\Description_Font_2}!(loc.Uninstallsomething_CB_Text)" />
+				<!-- 上一步按鈕 -->
+				<Control Id="Back_btn" Type="PushButton" X="174" Y="243" Width="56" Height="17" Text="!(loc.Back)">
+					<Publish Event="NewDialog" Value="something_Welcome_Dlg" />
+				</Control>
+				<!-- 解除安裝按鈕 -->
+				<Control Id="Uninstall_btn" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="!(loc.Uninstall)" Default="yes">
+					<Publish Property="REMOVE" Value="ALL" Order="1"/>
+					<Publish Event="EndDialog" Value="Return" Order="2"/>
+				</Control>
+				<!-- 取消按鈕 -->
+				<Control Id="Cancel_btn" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.Cancel)">
+					<Publish Event="SpawnDialog" Value="CancelDlg" />
+				</Control>
+			</Dialog>
+
+			<!-- License Agreement Page -->
+			<Dialog Id="License_Agreement_Dlg" Width="370" Height="270" Title="[ProductName]">
+				<!-- 頁面圖片 -->
+				<Control Id="Line_img" Type="Bitmap" X="0" Y="229" Width="370" Height="1" TabSkip="no" Text="Line_img" />
+				<Control Id="Header_img" Type="Bitmap" X="0" Y="0" Width="370" Height="52" TabSkip="no" Text="Header_img" />
+				<!-- 頁面名稱 -->
+				<Control Id="PageName_txt" Type="Text" X="10" Y="18" Width="120" Height="20" Transparent="yes" NoPrefix="yes" Text="{\Page_Name_Font}!(loc.LicenseAgreementPageName)"/>
+				<!-- 合約文字 -->
+				<Control Id="License_txt" Type="ScrollableText" X="10" Y="60" Width="350" Height="140" Sunken="yes" TabSkip="no">
+					<Text SourceFile="!(loc.LicenseAgreementContent)" />
+				</Control>
+				<Control Id="AgreeCheck_cb" Type="CheckBox" X="200" Y="205" Width="160" Height="15" Property="licenseAccepted" CheckBoxValue="1" Text="{\Description_Font_2}!(loc.LicenseAgreement_CB_Text)" />
+				<!-- 上一步按鈕 -->
+				<Control Id="Back_btn" Type="PushButton" X="174" Y="243" Width="56" Height="17" Text="!(loc.Back)">
+					<Publish Event="NewDialog" Value="something_Welcome_Dlg" />
+				</Control>
+				<!-- 下一步按鈕 -->
+				<Control Id="Next_btn" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.Next)" DisableCondition="NOT (licenseAccepted = &quot;1&quot;)" EnableCondition="licenseAccepted = &quot;1&quot;">
+					<Publish Event="NewDialog" Value="Client_Configuration_Dlg" />
+				</Control>
+				<!-- 取消按鈕 -->
+				<Control Id="Cancel_btn" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.Cancel)">
+					<Publish Event="SpawnDialog" Value="CancelDlg" />
+				</Control>
+			</Dialog>
+
+			<!-- Client Configuration Page -->
+			<Dialog Id="Client_Configuration_Dlg" Width="370" Height="270" Title="[ProductName]">
+				<!-- 頁面圖片 -->
+				<Control Id="Line_img" Type="Bitmap" X="0" Y="229" Width="370" Height="1" TabSkip="no" Text="Line_img" />
+				<Control Id="Header_img" Type="Bitmap" X="0" Y="0" Width="370" Height="52" TabSkip="no" Text="Header_img" />
+				<!-- 頁面名稱 -->
+				<Control Id="PageName_txt" Type="Text" X="10" Y="18" Width="120" Height="20" Transparent="yes" NoPrefix="yes" Text="{\Page_Name_Font}!(loc.ClientConfigurationPageName)"/>
+				<!-- 頁面文字 輸入框 -->
+				<Control Id="FQDN_txt" Type="Text" X="10" Y="59" Width="100" Height="15" Text="!(loc.ClientConfigurationSetting_FQDN)" />
+				<Control Id="FQDNEdit" Type="Edit" X="120" Y="58" Width="180" Height="18" Property="FQDN" />
+				
+				<Control Id="Protocol_txt" Type="Text" X="10" Y="83" Width="100" Height="15" Text="!(loc.ClientConfigurationSetting_Protocol)" />
+				<Control Id="ProtocolRadioButton" Type="RadioButtonGroup" X="120" Y="82" Width="300" Height="20" Property="PROTOCOL">
+					<RadioButtonGroup Property="PROTOCOL">
+						<RadioButton Value="https" X="0" Y="0" Width="50" Height="18" Text="https"/>
+						<RadioButton Value="http" X="50" Y="0" Width="50" Height="18" Text="http"/>
+					</RadioButtonGroup>
+				</Control>
+
+				<Control Id="IISFolderName_txt" Type="Text" X="10" Y="106" Width="100" Height="15" Text="!(loc.ClientConfigurationSetting_IISFolder)" />
+				<Control Id="IISFolderNameEdit" Type="Edit" X="120" Y="106" Width="180" Height="18" Property="IISFOLDERNAME" />
+
+				<!-- 上一步按鈕 -->
+				<Control Id="Back_btn" Type="PushButton" X="174" Y="243" Width="56" Height="17" Text="!(loc.Back)">
+					<Publish Event="NewDialog" Value="License_Agreement_Dlg"></Publish>
+				</Control>
+				<!-- 安裝按鈕 -->
+				<Control Id="Install_btn" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" ElevationShield="yes" Text="!(loc.Install)" EnableCondition="FQDN AND IISFOLDERNAME" DisableCondition="NOT FQDN OR NOT IISFOLDERNAME">
+					<Publish Event="EndDialog" Value="Return" />
+				</Control>
+				<!-- 取消按鈕 -->
+				<Control Id="Cancel_btn" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.Cancel)">
+					<Publish Event="SpawnDialog" Value="CancelDlg"></Publish>
+				</Control>
+			</Dialog>
+
+			<!-- Install something Page -->
+			<Dialog Id="Install_something_Dlg" Width="370" Height="270" Title="[ProductName]" Modeless="yes">
+				<!-- 頁面圖片 -->
+				<Control Id="Line_img" Type="Bitmap" X="0" Y="229" Width="370" Height="1" TabSkip="no" Text="Line_img" />
+				<Control Id="Header_img" Type="Bitmap" X="0" Y="0" Width="370" Height="52" TabSkip="no" Text="Header_img" />
+				<!-- 頁面名稱 -->
+				<Control Id="PageName_txt" Type="Text" X="10" Y="18" Width="120" Height="20" Transparent="yes" NoPrefix="yes" Text="{\Page_Name_Font}!(loc.InstallingsomethingPageName)"/>
+				<!-- 頁面文字 -->
+				<Control Id="InstallingsomethingDescription_1_txt" Type="Text" X="10" Y="59" Width="320" Height="35" Text="{\Welcome_Font}!(loc.InstallingsomethingDescription_1)" />
+				<Control Id="InstallingsomethingDescription_2_txt" Type="Text" X="10" Y="80" Width="360" Height="40" Text="{\Description_Font_1}!(loc.InstallingsomethingDescription_2)" />
+				<Control Id="Status_txt" Type="Text" X="10" Y="135" Width="360" Height="20" Text="{\Description_Font_3}!(loc.Status)" />
+				<!-- 進度條 -->
+				<Control Id="ProgressBar" Type="ProgressBar" X="10" Y="145" Width="350" Height="12" ProgressBlocks="yes">
+					<Subscribe Event="SetProgress" Attribute="Progress" />
+				</Control>
+				<!-- 取消按鈕 -->
+				<Control Id="Cancel_btn" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.Cancel)">
+					<Publish Event="SpawnDialog" Value="CancelDlg" />
+				</Control>
+			</Dialog>
+
+			<!-- Uninstalling something Page -->
+			<Dialog Id="Uninstalling_something_Dlg" Width="370" Height="270" Title="[ProductName]" Modeless="yes">
+				<!-- 頁面圖片 -->
+				<Control Id="Line_img" Type="Bitmap" X="0" Y="229" Width="370" Height="1" TabSkip="no" Text="Line_img" />
+				<Control Id="Header_img" Type="Bitmap" X="0" Y="0" Width="370" Height="52" TabSkip="no" Text="Header_img" />
+				<!-- 頁面名稱 -->
+				<Control Id="PageName_txt" Type="Text" X="10" Y="18" Width="120" Height="20" Transparent="yes" NoPrefix="yes" Text="{\Page_Name_Font}!(loc.UninstallingsomethingPageName)"/>
+				<!-- 頁面文字 -->
+				<Control Id="UninstallingsomethingDescription_1_txt" Type="Text" X="10" Y="59" Width="320" Height="35" Text="{\Welcome_Font}!(loc.UninstallingsomethingDescription_1)" />
+				<Control Id="UninstallingsomethingDescription_2_txt" Type="Text" X="10" Y="80" Width="360" Height="40" Text="{\Description_Font_1}!(loc.UninstallingsomethingDescription_2)" />
+				<Control Id="Status_txt" Type="Text" X="10" Y="135" Width="360" Height="10" Text="{\Description_Font_3}!(loc.Status)" />
+				<!-- 進度條 -->
+				<Control Id="ProgressBar" Type="ProgressBar" X="10" Y="145" Width="350" Height="12" ProgressBlocks="yes">
+					<Subscribe Event="SetProgress" Attribute="Progress" />
+				</Control>
+				<!-- 取消按鈕 -->
+				<Control Id="Cancel_btn" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.Cancel)">
+					<Publish Event="SpawnDialog" Value="CancelDlg" />
+				</Control>
+			</Dialog>
+
+			<!-- Operation Completed Page -->
+			<Dialog Id="Operation_Completed_Dlg" Width="370" Height="270" Title="[ProductName]">
+				<!-- 頁面圖片 -->
+				<Control Id="Line_img" Type="Bitmap" X="0" Y="229" Width="370" Height="1" TabSkip="no" Text="Line_img" />
+				<Control Id="WelcomeLogo_img" Type="Bitmap" X="0" Y="0" Width="115" Height="229" TabSkip="no" Text="WelcomLogo_img" />
+				<!-- 頁面文字 -->
+				<Control Id="CompletedSubtitle_txt" Type="Text" X="120" Y="20" Width="240" Height="40" Transparent="yes" NoPrefix="yes" Text="{\Welcome_Font}!(loc.CompletedSubtitle)"/>
+				<Control Id="CompletedDescription_1_txt" Type="Text" X="120" Y="60" Width="230" Height="100" Transparent="yes" NoPrefix="yes" Text="{\Description_Font_1}!(loc.CompletedDescription_1)"/>
+				<!-- 上一步按鈕 -->
+				<Control Id="Back_btn" Type="PushButton" X="174" Y="243" Width="56" Height="17" Text="!(loc.Back)" Disabled="yes">
+					<Publish Event="NewDialog" Value="something_Welcome_Dlg" />
+				</Control>
+				<!-- 完成按鈕 -->
+				<Control Id="Finish_btn" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="!(loc.Finish)" Default="yes">
+					<Publish Event="EndDialog" Value="Return" />
+				</Control>
+				<!-- 取消按鈕 -->
+				<Control Id="Cancel_btn" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.Cancel)" Disabled="yes">
+					<Publish Event="SpawnDialog" Value="CancelDlg" />
+				</Control>
+			</Dialog>
+
+			<!-- Operation Interrupted Page -->
+			<Dialog Id="Operation_Interrupted_Dlg" Width="370" Height="270" Title="[ProductName]">
+				<!-- 頁面圖片 -->
+				<Control Id="Line_img" Type="Bitmap" X="0" Y="229" Width="370" Height="1" TabSkip="no" Text="Line_img" />
+				<Control Id="WelcomeLogo_img" Type="Bitmap" X="0" Y="0" Width="115" Height="229" TabSkip="no" Text="WelcomLogo_img" />
+				<!-- 頁面文字 -->
+				<Control Id="InterruptedSubtitle_txt" Type="Text" X="120" Y="20" Width="240" Height="40" Transparent="yes" NoPrefix="yes" Text="{\Welcome_Font}!(loc.InterruptedSubtitle)"/>
+				<Control Id="InterruptedDescription_1_txt" Type="Text" X="120" Y="60" Width="230" Height="100" Transparent="yes" NoPrefix="yes" Text="{\Description_Font_1}!(loc.InterruptedDescription_1)"/>
+				<!-- 上一步按鈕 -->
+				<Control Id="Back_btn" Type="PushButton" X="174" Y="243" Width="56" Height="17" Text="!(loc.Back)" Disabled="yes">
+					<Publish Event="NewDialog" Value="something_Welcome_Dlg" />
+				</Control>
+				<!-- 完成按鈕 -->
+				<Control Id="Finish_btn" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="!(loc.Finish)" Default="yes">
+					<Publish Event="EndDialog" Value="Return" />
+				</Control>
+				<!-- 取消按鈕 -->
+				<Control Id="Cancel_btn" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.Cancel)" Disabled="yes">
+					<Publish Event="SpawnDialog" Value="CancelDlg" />
+				</Control>
+			</Dialog>
+
+			<!-- Operation Error Page -->
+			<Dialog Id="Operation_Error_Dlg" Width="370" Height="270" Title="[ProductName]">
+				<!-- 頁面圖片 -->
+				<Control Id="Line_img" Type="Bitmap" X="0" Y="229" Width="370" Height="1" TabSkip="no" Text="Line_img" />
+				<Control Id="WelcomeLogo_img" Type="Bitmap" X="0" Y="0" Width="115" Height="229" TabSkip="no" Text="WelcomLogo_img" />
+				<!-- 頁面文字 -->
+				<Control Id="InterruptedSubtitle_txt" Type="Text" X="120" Y="20" Width="240" Height="40" Transparent="yes" NoPrefix="yes" Text="{\Welcome_Font}!(loc.InterruptedSubtitle)"/>
+				<Control Id="InterruptedDescription_1_txt" Type="Text" X="120" Y="60" Width="230" Height="100" Transparent="yes" NoPrefix="yes" Text="{\Description_Font_1}!(loc.InterruptedDescription_1)"/>
+				<!-- 上一步按鈕 -->
+				<Control Id="Back_btn" Type="PushButton" X="174" Y="243" Width="56" Height="17" Text="!(loc.Back)" Disabled="yes">
+					<Publish Event="NewDialog" Value="something_Welcome_Dlg" />
+				</Control>
+				<!-- 完成按鈕 -->
+				<Control Id="Finish_btn" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="!(loc.Finish)" Default="yes">
+					<Publish Event="EndDialog" Value="Return" />
+				</Control>
+				<!-- 取消按鈕 -->
+				<Control Id="Cancel_btn" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.Cancel)" Disabled="yes">
+					<Publish Event="SpawnDialog" Value="CancelDlg" />
+				</Control>
+			</Dialog>
+			
+		</UI>
+
+		<UIRef Id="WixUI_Common" />
+
+	</Fragment>
+</Wix>

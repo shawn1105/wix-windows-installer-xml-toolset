@@ -1,0 +1,10 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+	 xmlns:firewall="http://wixtoolset.org/schemas/v4/wxs/firewall"
+	 xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
+	<Fragment>
+		<!-- 圖片來源 -->
+		<Binary Id="Line_img" SourceFile="$(var.SolutionDir)Resources\Images\line.bmp" />
+		<Binary Id="WelcomLogo_img" SourceFile="$(var.SolutionDir)Resources\Images\LOGO.bmp" />
+		<Binary Id="Header_img" SourceFile="$(var.SolutionDir)Resources\Images\header.bmp" />
+	</Fragment>
+</Wix>
