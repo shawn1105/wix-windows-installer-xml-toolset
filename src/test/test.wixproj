@@ -1,7 +1,7 @@
 ﻿<Project Sdk="WixToolset.Sdk/5.0.2">
   <PropertyGroup>
     <DefineConstants>
-			Dir=$(SolutionDir)\SIP_PCinfo;
+			Dir=$(SolutionDir)\test;
 			ProductName=test;
 			Manufacturer=myself;
 			Version=1.0.0;
